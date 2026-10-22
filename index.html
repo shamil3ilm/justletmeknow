@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>just let me know.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1E1B3A; --ink-light:#2E2A52; --coral:#F97362; --coral-dark:#E85D4B; --coral-tint:#FEEDEA;
+    --slate:#6B6880; --lavender:#A9A6C4; --paper:#FAFAF7; --mist:#F1F0EB; --border:#E2E0D8;
+    --font:'Plus Jakarta Sans',system-ui,sans-serif;
+    --r-sm:8px; --r-md:12px; --r-lg:20px;
+    --container:1120px; --gutter:24px; --section:112px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--container);margin:0 auto;padding:0 var(--gutter)}
+  .dot{color:var(--coral);font-weight:800}
+  .just{color:var(--slate);font-weight:400}
+  .on-dark .just{color:var(--lavender)}
+
+  /* nav */
+  header{position:sticky;top:0;z-index:10;background:rgba(250,250,247,.88);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+  header.scrolled{border-bottom-color:var(--border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{font-size:20px;font-weight:700;letter-spacing:-.02em}
+  .nav-links{display:flex;align-items:center;gap:32px;font-size:15px;font-weight:500;color:var(--slate)}
+  .nav-links a:hover{color:var(--ink)}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--font);padding:14px 22px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;transition:background .15s,transform .15s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+  .btn-primary{background:var(--ink);color:var(--paper)} .btn-primary:hover{background:var(--ink-light)}
+  .btn-accent{background:var(--coral);color:#fff} .btn-accent:hover{background:var(--coral-dark)}
+  .btn-secondary{border-color:var(--border);color:var(--ink);background:transparent} .btn-secondary:hover{background:var(--mist)}
+  .btn-ghost-dark{border-color:var(--ink-light);color:var(--paper)} .btn-ghost-dark:hover{background:var(--ink-light)}
+  .nav .btn{padding:11px 18px}
+
+  /* type */
+  .label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:16px}
+  .on-dark .label{color:var(--lavender)}
+  .title{font-size:64px;font-weight:700;line-height:1.04;letter-spacing:-.025em}
+  h2{font-size:40px;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+  h3{font-size:20px;font-weight:600;line-height:1.35;letter-spacing:-.01em}
+  .lead{font-size:19px;color:var(--slate);max-width:580px}
+  .muted{color:var(--slate)}
+  section{padding:var(--section) 0}
+  .sec-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:56px}
+  .sec-head p{max-width:420px}
+
+  /* hero */
+  .hero{padding:120px 0 104px}
+  .hero .title{margin-bottom:28px}
+  .hero .lead{margin-bottom:40px}
+  .intro-name{font-size:19px;font-weight:600;color:var(--ink);margin-bottom:4px}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-note{margin-top:28px;font-size:14px;color:var(--slate);display:flex;align-items:center;gap:10px}
+  .hero-note::before{content:"";width:8px;height:8px;border-radius:50%;background:#2F9E6E}
+
+  /* steps */
+  .mist-bg{background:var(--mist)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .step{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-md);padding:32px 28px}
+  .step-num{font-size:14px;font-weight:700;color:var(--coral);margin-bottom:24px;display:block}
+  .step h3{margin-bottom:10px}
+  .step p{font-size:15px;color:var(--slate)}
+  .direct{margin-top:40px;display:flex;align-items:center;gap:16px;font-size:17px;font-weight:500}
+  .direct .avatar{width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-weight:700;font-size:15px;flex:none}
+
+  /* problems */
+  .problems{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .problem{border:1px solid var(--border);border-radius:var(--r-md);padding:36px 32px;background:#fff;transition:border-color .15s}
+  .problem:hover{border-color:var(--ink)}
+  .problem .q{font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.3;margin-bottom:12px}
+  .problem p{color:var(--slate)}
+
+  /* products */
+  .products{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .product{border-radius:var(--r-lg);padding:40px;display:flex;flex-direction:column;gap:12px;min-height:260px}
+  .product.dark{background:var(--ink);color:var(--paper)}
+  .product.light{background:#fff;border:1px solid var(--border)}
+  .product .name{font-size:32px;font-weight:700;letter-spacing:-.02em}
+  .product .desc{font-size:17px;opacity:.85;max-width:380px}
+  .product.dark .desc{color:var(--lavender);opacity:1}
+  .product .go{margin-top:auto;font-weight:600;font-size:15px}
+  .product .go span{color:var(--coral)}
+  .badge{align-self:flex-start;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--coral-tint);color:var(--coral-dark)}
+  .product.dark .badge{background:var(--ink-light);color:var(--coral)}
+
+  /* case */
+  .case{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+  .case-panel{background:var(--ink);border-radius:var(--r-lg);padding:32px;color:var(--paper)}
+  .portals{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .portal{background:var(--ink-light);border-radius:var(--r-md);padding:24px 20px;display:flex;flex-direction:column;gap:6px;min-height:120px}
+  .portal b{font-size:18px;font-weight:700}
+  .portal b::after{content:".";color:var(--coral);font-weight:800}
+  .portal span{font-size:14px;color:var(--lavender);line-height:1.5}
+  .case h2{margin-bottom:20px}
+  .case .lead{margin-bottom:32px}
+  .link{font-weight:600;border-bottom:2px solid var(--coral);padding-bottom:2px}
+
+  /* cta */
+  .cta{background:var(--ink);color:var(--paper);border-radius:var(--r-lg);padding:88px 72px;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end}
+  .cta .title{font-size:52px}
+  .cta-side{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+  .cta-side .mail{color:var(--lavender);font-size:15px;margin-top:8px}
+  .cta-note{color:var(--lavender);margin-top:20px;font-size:15px}
+
+  footer{padding:56px 0;color:var(--slate);font-size:14px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot nav{display:flex;gap:24px}
+
+  @media (max-width:960px){
+    :root{--section:80px}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .case,.cta{grid-template-columns:1fr}
+    .cta{padding:56px 32px}
+  }
+  @media (max-width:720px){
+    :root{--gutter:16px;--section:64px}
+    .nav-links a:not(.btn){display:none}
+    .title{font-size:40px} .cta .title{font-size:36px}
+    h2{font-size:30px}
+    .hero{padding:64px 0 56px}
+    .lead{font-size:17px}
+    .steps,.problems,.products{grid-template-columns:1fr}
+    .sec-head{flex-direction:column;align-items:flex-start;margin-bottom:32px}
+    .product{padding:32px 28px;min-height:0}
+    .problem{padding:28px 24px}
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="logo" href="#"><span class="just">just</span> let me know<span class="dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#how">How I work</a>
+      <a href="#solve">Solutions</a>
+      <a href="#products">Products</a>
+      <a href="#">About</a>
+      <a class="btn btn-primary" href="#contact">Let me know</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1 class="title">Got a problem slowing<br>your business down?<br><span class="just">just</span> let me know<span class="dot">.</span></h1>
+      <p class="intro-name">Hi, I'm Mohamed Shamil.</p>
+      <p class="lead">I work alongside your team, build the solution into the systems you already use, and stay until it works.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="#contact">Tell me what's in the way</a>
+        <a class="btn btn-secondary" href="#how">See how I work</a>
+      </div>
+      <p class="hero-note">Taking on new projects for early 2027</p>
+    </div>
+  </section>
+
+  <section class="mist-bg" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="label">How I work</div><h2>Built with you,<br>not handed over the wall.</h2></div>
+        <p class="muted">No long requirement documents. I get close to the problem, show progress early, and keep going until your team actually uses it.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="step-num">01</span><h3>Sit with your team</h3><p>I learn how the work really happens: the workarounds, the spreadsheets, the bottlenecks.</p></div>
+        <div class="step"><span class="step-num">02</span><h3>Show it early</h3><p>A working first version on your real data within days, not a slide deck.</p></div>
+        <div class="step"><span class="step-num">03</span><h3>Build it in</h3><p>Connected to the tools you already use, so nobody has to change how they work.</p></div>
+        <div class="step"><span class="step-num">04</span><h3>Stay till it sticks</h3><p>I stay through launch, fix what real use uncovers, then hand over cleanly.</p></div>
+      </div>
+      <div class="direct"><span class="avatar">MS</span>You work directly with me, from the first conversation to launch. No account managers, no handoffs.</div>
+    </div>
+  </section>
+
+  <section id="solve">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="label">Problems I solve</div><h2>Sound familiar?</h2></div>
+        <p class="muted">If one of these is costing you time or money, that's where we start.</p>
+      </div>
+      <div class="problems">
+        <div class="problem"><div class="q">"We run the business on spreadsheets."</div><p>One system your whole team works in, with the right access for each person.</p></div>
+        <div class="problem"><div class="q">"Payments keep slipping through the cracks."</div><p>Payments that collect, reconcile and never fail silently.</p></div>
+        <div class="problem"><div class="q">"The ZATCA deadline is coming."</div><p>Compliant e-invoices from the setup you already have, without starting over.</p></div>
+        <div class="problem"><div class="q">"Our tools don't talk to each other."</div><p>Your systems connected, and the copy-paste busywork automated away.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mist-bg">
+    <div class="wrap case">
+      <div class="case-panel on-dark">
+        <div class="label">Cert-Ed Academia · four portals, one system</div>
+        <div class="portals">
+          <div class="portal"><b>Tutors</b><span>Run classes, set homework, grade</span></div>
+          <div class="portal"><b>Students</b><span>Join class, submit work, see grades</span></div>
+          <div class="portal"><b>Mentors</b><span>Follow each student's progress</span></div>
+          <div class="portal"><b>Admins</b><span>Attendance, billing and access</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="label">Recent work</div>
+        <h2>An online academy, run from one place.</h2>
+        <p class="lead">Classes, homework and grading, attendance and billing used to live in different places. Now tutors, students, mentors and admins each have their own portal, and it all runs together.</p>
+        <a class="link" href="#">Read the story</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="label">Ready-made</div><h2>Products I've built.</h2></div>
+        <p class="muted">Some problems are common enough to solve once, for everyone.</p>
+      </div>
+      <div class="products">
+        <a class="product dark" href="#"><span class="badge">Early access</span><div class="name">Masaar<span class="dot">.</span></div><p class="desc">ZATCA-compliant e-invoicing for Saudi businesses.</p><div class="go">masaar.justletmeknow.app <span>→</span></div></a>
+        <a class="product light" href="#"><span class="badge">Beta</span><div class="name">employ<span class="dot">.</span></div><p class="desc muted">Find, track and apply to jobs, with a tailored CV for each one.</p><div class="go">employ.justletmeknow.app <span>→</span></div></a>
+      </div>
+      <p style="margin-top:28px" class="muted">More in the lab. <a class="link" href="#">See everything</a></p>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta on-dark">
+        <div>
+          <div class="label">Start here</div>
+          <h2 class="title">What's in your way?<br><span class="just">just</span> let me know<span class="dot">.</span></h2>
+          <p class="cta-note">I take on a few projects at a time, so each one gets my full attention. I reply within one working day.</p>
+        </div>
+        <div class="cta-side">
+          <a class="btn btn-accent" href="#">Send a message</a>
+          <a class="btn btn-ghost-dark" href="#">Chat on WhatsApp</a>
+          <span class="mail">or hello@justletmeknow.app</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="logo" style="font-size:16px"><span class="just">just</span> let me know<span class="dot">.</span></span>
+    <nav><a href="#">Products</a><a href="#">About</a><a href="#">Privacy</a></nav>
+    <span>© 2026 just let me know</span>
+  </div>
+</footer>
+
+<script>
+  const h=document.getElementById('hdr');
+  addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>8),{passive:true});
+</script>
+</body>
+</html>
