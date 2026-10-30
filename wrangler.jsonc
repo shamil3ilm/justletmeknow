@@ -1,0 +1,13 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "justletmeknow",
+  "compatibility_date": "2026-10-30",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    { "pattern": "justletmeknow.app", "custom_domain": true },
+    { "pattern": "www.justletmeknow.app", "custom_domain": true }
+  ]
+}
